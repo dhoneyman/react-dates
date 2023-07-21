@@ -208,6 +208,7 @@ var DateInput = /*#__PURE__*/function (_ref2, _ref) {
       value: value,
       onChange: this.onChange,
       onBlur: function onBlur(evt) {
+        if (!containerRef) return;
         if (!(containerRef !== null && containerRef !== void 0 && containerRef.contains(evt.relatedTarget))) onKeyDownShiftTab();
       },
       onKeyDown: this.onKeyDown,

@@ -241,6 +241,7 @@ class DateInput extends React.PureComponent {
           value={value}
           onChange={this.onChange}
           onBlur={(evt) => {
+            if (!containerRef) return;
             if (!containerRef?.contains(evt.relatedTarget)) onKeyDownShiftTab();
           }}
           onKeyDown={this.onKeyDown}
