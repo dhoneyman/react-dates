@@ -527,7 +527,8 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
       verticalSpacing: verticalSpacing,
       reopenPickerOnClearDate: reopenPickerOnClearDate,
       keepOpenOnDateSelect: keepOpenOnDateSelect,
-      containerRef: this.container
+      containerRef: this.container,
+      dayPickerContainer: this.dayPickerContainer
     }, this.maybeRenderDayPickerWithPortal());
     return /*#__PURE__*/React.createElement("div", _extends({
       ref: this.setContainerRef

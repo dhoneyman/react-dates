@@ -632,6 +632,7 @@ class SingleDatePicker extends React.PureComponent {
         reopenPickerOnClearDate={reopenPickerOnClearDate}
         keepOpenOnDateSelect={keepOpenOnDateSelect}
         containerRef={this.container}
+        dayPickerContainer={this.dayPickerContainer}
       >
         {this.maybeRenderDayPickerWithPortal()}
       </SingleDatePickerInputController>

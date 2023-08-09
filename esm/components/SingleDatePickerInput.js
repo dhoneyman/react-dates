@@ -44,6 +44,7 @@ var propTypes = process.env.NODE_ENV !== "production" ? forbidExtraProps(_object
   regular: PropTypes.bool,
   verticalSpacing: nonNegativeInteger,
   containerRef: PropTypes.element,
+  dayPickerContainer: PropTypes.element,
   onChange: PropTypes.func,
   onClearDate: PropTypes.func,
   onFocus: PropTypes.func,
@@ -81,6 +82,7 @@ var defaultProps = {
   regular: false,
   verticalSpacing: undefined,
   containerRef: null,
+  dayPickerContainer: null,
   onChange: function onChange() {},
   onClearDate: function onClearDate() {},
   onFocus: function onFocus() {},
@@ -128,7 +130,8 @@ function SingleDatePickerInput(_ref) {
     verticalSpacing = _ref.verticalSpacing,
     css = _ref.css,
     styles = _ref.styles,
-    containerRef = _ref.containerRef;
+    containerRef = _ref.containerRef,
+    dayPickerContainer = _ref.dayPickerContainer;
   var calendarIcon = customInputIcon || /*#__PURE__*/React.createElement(CalendarIcon, css(styles.SingleDatePickerInput_calendarIcon_svg));
   var closeIcon = customCloseIcon || /*#__PURE__*/React.createElement(CloseButton, css(styles.SingleDatePickerInput_clearDate_svg, small && styles.SingleDatePickerInput_clearDate_svg__small));
   var screenReaderText = screenReaderMessage || phrases.keyboardForwardNavigationInstructions;
@@ -164,7 +167,8 @@ function SingleDatePickerInput(_ref) {
     small: small,
     regular: regular,
     block: block,
-    containerRef: containerRef
+    containerRef: containerRef,
+    dayPickerContainer: dayPickerContainer
   }), children, showClearDate && /*#__PURE__*/React.createElement("button", _extends({}, css(styles.SingleDatePickerInput_clearDate, small && styles.SingleDatePickerInput_clearDate__small, !customCloseIcon && styles.SingleDatePickerInput_clearDate__default, !displayValue && styles.SingleDatePickerInput_clearDate__hide), {
     type: "button",
     "aria-label": phrases.clearDate,

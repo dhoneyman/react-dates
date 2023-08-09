@@ -45,6 +45,7 @@ const propTypes = forbidExtraProps({
   regular: PropTypes.bool,
   verticalSpacing: nonNegativeInteger,
   containerRef: PropTypes.element,
+  dayPickerContainer: PropTypes.element,
 
   onChange: PropTypes.func,
   onClearDate: PropTypes.func,
@@ -85,6 +86,7 @@ const defaultProps = {
   regular: false,
   verticalSpacing: undefined,
   containerRef: null,
+  dayPickerContainer: null,
 
   onChange() {},
   onClearDate() {},
@@ -136,6 +138,7 @@ function SingleDatePickerInput({
   css,
   styles,
   containerRef,
+  dayPickerContainer,
 }) {
   const calendarIcon = customInputIcon || (
     <CalendarIcon {...css(styles.SingleDatePickerInput_calendarIcon_svg)} />
@@ -202,6 +205,7 @@ function SingleDatePickerInput({
         regular={regular}
         block={block}
         containerRef={containerRef}
+        dayPickerContainer={dayPickerContainer}
       />
 
       {children}

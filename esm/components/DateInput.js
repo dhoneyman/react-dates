@@ -44,6 +44,7 @@ var propTypes = process.env.NODE_ENV !== "production" ? forbidExtraProps(_object
   onKeyDownArrowDown: PropTypes.func,
   onKeyDownQuestionMark: PropTypes.func,
   containerRef: PropTypes.element,
+  dayPickerContainer: PropTypes.element,
   // accessibility
   isFocused: PropTypes.bool // describes actual DOM focus
 })) : {};
@@ -65,6 +66,7 @@ var defaultProps = {
   block: false,
   regular: false,
   containerRef: null,
+  dayPickerContainer: null,
   onChange: function onChange() {},
   onFocus: function onFocus() {},
   onKeyDownShiftTab: function onKeyDownShiftTab() {},
@@ -193,6 +195,7 @@ var DateInput = /*#__PURE__*/function (_ref2, _ref) {
       styles = _this$props4.styles,
       onKeyDownShiftTab = _this$props4.onKeyDownShiftTab,
       containerRef = _this$props4.containerRef,
+      dayPickerContainer = _this$props4.dayPickerContainer,
       reactDates = _this$props4.theme.reactDates;
     var value = dateString || displayValue || '';
     var screenReaderMessageId = "DateInput__screen-reader-message-".concat(id);
@@ -209,7 +212,7 @@ var DateInput = /*#__PURE__*/function (_ref2, _ref) {
       onChange: this.onChange,
       onBlur: function onBlur(evt) {
         if (!containerRef) return;
-        if (!(containerRef !== null && containerRef !== void 0 && containerRef.contains(evt.relatedTarget))) onKeyDownShiftTab();
+        if (!(dayPickerContainer !== null && dayPickerContainer !== void 0 && dayPickerContainer.contains(evt.relatedTarget))) onKeyDownShiftTab();
       },
       onKeyDown: this.onKeyDown,
       onFocus: onFocus,

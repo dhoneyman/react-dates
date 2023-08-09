@@ -69,6 +69,7 @@ export default {
   transitionDuration: nonNegativeInteger,
   horizontalMonthPadding: nonNegativeInteger,
   customRef: PropTypes.element,
+  dayPickerContainer: PropTypes.element,
 
   // navigation related props
   dayPickerNavigationInlineStyles: PropTypes.object,
