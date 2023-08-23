@@ -156,12 +156,17 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     this.isTouchDevice = isTouchDevice();
   };
   _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var focused = this.props.focused;
+    var _this$props = this.props,
+      focused = _this$props.focused,
+      openDirection = _this$props.openDirection;
     if (!prevProps.focused && focused) {
       this.responsivizePickerPosition();
       this.disableScroll();
     } else if (prevProps.focused && !focused) {
       if (this.enableScroll) this.enableScroll();
+    } else if (prevProps.openDirection !== openDirection) {
+      // The direction of the date picker has changed
+      this.responsivizePickerPosition();
     }
   }
 
@@ -172,12 +177,12 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     if (this.enableScroll) this.enableScroll();
   };
   _proto.onOutsideClick = function onOutsideClick(event) {
-    var _this$props = this.props,
-      focused = _this$props.focused,
-      onFocusChange = _this$props.onFocusChange,
-      onClose = _this$props.onClose,
-      date = _this$props.date,
-      appendToBody = _this$props.appendToBody;
+    var _this$props2 = this.props,
+      focused = _this$props2.focused,
+      onFocusChange = _this$props2.onFocusChange,
+      onClose = _this$props2.onClose,
+      date = _this$props2.date,
+      appendToBody = _this$props2.appendToBody;
     if (!focused) return;
     if (appendToBody && this.dayPickerContainer.contains(event.target)) return;
     this.setState({
@@ -194,12 +199,12 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
   };
   _proto.onInputFocus = function onInputFocus(_ref3) {
     var focused = _ref3.focused;
-    var _this$props2 = this.props,
-      onFocusChange = _this$props2.onFocusChange,
-      readOnly = _this$props2.readOnly,
-      withPortal = _this$props2.withPortal,
-      withFullScreenPortal = _this$props2.withFullScreenPortal,
-      keepFocusOnInput = _this$props2.keepFocusOnInput;
+    var _this$props3 = this.props,
+      onFocusChange = _this$props3.onFocusChange,
+      readOnly = _this$props3.readOnly,
+      withPortal = _this$props3.withPortal,
+      withFullScreenPortal = _this$props3.withFullScreenPortal,
+      keepFocusOnInput = _this$props3.keepFocusOnInput;
     if (focused) {
       var withAnyPortal = withPortal || withFullScreenPortal;
       var moveFocusToDayPicker = withAnyPortal || readOnly && !keepFocusOnInput || this.isTouchDevice && !keepFocusOnInput;
@@ -261,10 +266,10 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     if (this.removeFocusOutEventListener) this.removeFocusOutEventListener();
   };
   _proto.disableScroll = function disableScroll() {
-    var _this$props3 = this.props,
-      appendToBody = _this$props3.appendToBody,
-      propDisableScroll = _this$props3.disableScroll,
-      focused = _this$props3.focused;
+    var _this$props4 = this.props,
+      appendToBody = _this$props4.appendToBody,
+      propDisableScroll = _this$props4.disableScroll,
+      focused = _this$props4.focused;
     if (!appendToBody && !propDisableScroll) return;
     if (!focused) return;
 
@@ -281,14 +286,14 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     this.setState({
       dayPickerContainerStyles: {}
     });
-    var _this$props4 = this.props,
-      openDirection = _this$props4.openDirection,
-      anchorDirection = _this$props4.anchorDirection,
-      horizontalMargin = _this$props4.horizontalMargin,
-      withPortal = _this$props4.withPortal,
-      withFullScreenPortal = _this$props4.withFullScreenPortal,
-      appendToBody = _this$props4.appendToBody,
-      focused = _this$props4.focused;
+    var _this$props5 = this.props,
+      openDirection = _this$props5.openDirection,
+      anchorDirection = _this$props5.anchorDirection,
+      horizontalMargin = _this$props5.horizontalMargin,
+      withPortal = _this$props5.withPortal,
+      withFullScreenPortal = _this$props5.withFullScreenPortal,
+      appendToBody = _this$props5.appendToBody,
+      focused = _this$props5.focused;
     var dayPickerContainerStyles = this.state.dayPickerContainerStyles;
     if (!focused) {
       return;
@@ -311,11 +316,11 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     });
   };
   _proto.maybeRenderDayPickerWithPortal = function maybeRenderDayPickerWithPortal() {
-    var _this$props5 = this.props,
-      focused = _this$props5.focused,
-      withPortal = _this$props5.withPortal,
-      withFullScreenPortal = _this$props5.withFullScreenPortal,
-      appendToBody = _this$props5.appendToBody;
+    var _this$props6 = this.props,
+      focused = _this$props6.focused,
+      withPortal = _this$props6.withPortal,
+      withFullScreenPortal = _this$props6.withFullScreenPortal,
+      appendToBody = _this$props6.appendToBody;
     if (!focused) {
       return null;
     }
@@ -325,59 +330,59 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     return this.renderDayPicker();
   };
   _proto.renderDayPicker = function renderDayPicker() {
-    var _this$props6 = this.props,
-      anchorDirection = _this$props6.anchorDirection,
-      openDirection = _this$props6.openDirection,
-      onDateChange = _this$props6.onDateChange,
-      date = _this$props6.date,
-      minDate = _this$props6.minDate,
-      maxDate = _this$props6.maxDate,
-      onFocusChange = _this$props6.onFocusChange,
-      focused = _this$props6.focused,
-      enableOutsideDays = _this$props6.enableOutsideDays,
-      numberOfMonths = _this$props6.numberOfMonths,
-      orientation = _this$props6.orientation,
-      monthFormat = _this$props6.monthFormat,
-      dayPickerNavigationInlineStyles = _this$props6.dayPickerNavigationInlineStyles,
-      navPosition = _this$props6.navPosition,
-      navPrev = _this$props6.navPrev,
-      navNext = _this$props6.navNext,
-      renderNavPrevButton = _this$props6.renderNavPrevButton,
-      renderNavNextButton = _this$props6.renderNavNextButton,
-      onPrevMonthClick = _this$props6.onPrevMonthClick,
-      onNextMonthClick = _this$props6.onNextMonthClick,
-      onClose = _this$props6.onClose,
-      withPortal = _this$props6.withPortal,
-      withFullScreenPortal = _this$props6.withFullScreenPortal,
-      keepOpenOnDateSelect = _this$props6.keepOpenOnDateSelect,
-      initialVisibleMonth = _this$props6.initialVisibleMonth,
-      renderMonthText = _this$props6.renderMonthText,
-      renderWeekHeaderElement = _this$props6.renderWeekHeaderElement,
-      renderCalendarDay = _this$props6.renderCalendarDay,
-      renderDayContents = _this$props6.renderDayContents,
-      renderCalendarInfo = _this$props6.renderCalendarInfo,
-      renderMonthElement = _this$props6.renderMonthElement,
-      calendarInfoPosition = _this$props6.calendarInfoPosition,
-      hideKeyboardShortcutsPanel = _this$props6.hideKeyboardShortcutsPanel,
-      firstDayOfWeek = _this$props6.firstDayOfWeek,
-      customCloseIcon = _this$props6.customCloseIcon,
-      phrases = _this$props6.phrases,
-      dayAriaLabelFormat = _this$props6.dayAriaLabelFormat,
-      daySize = _this$props6.daySize,
-      isRTL = _this$props6.isRTL,
-      isOutsideRange = _this$props6.isOutsideRange,
-      isDayBlocked = _this$props6.isDayBlocked,
-      isDayHighlighted = _this$props6.isDayHighlighted,
-      weekDayFormat = _this$props6.weekDayFormat,
-      css = _this$props6.css,
-      styles = _this$props6.styles,
-      verticalHeight = _this$props6.verticalHeight,
-      transitionDuration = _this$props6.transitionDuration,
-      verticalSpacing = _this$props6.verticalSpacing,
-      horizontalMonthPadding = _this$props6.horizontalMonthPadding,
-      small = _this$props6.small,
-      customRef = _this$props6.customRef,
-      reactDates = _this$props6.theme.reactDates;
+    var _this$props7 = this.props,
+      anchorDirection = _this$props7.anchorDirection,
+      openDirection = _this$props7.openDirection,
+      onDateChange = _this$props7.onDateChange,
+      date = _this$props7.date,
+      minDate = _this$props7.minDate,
+      maxDate = _this$props7.maxDate,
+      onFocusChange = _this$props7.onFocusChange,
+      focused = _this$props7.focused,
+      enableOutsideDays = _this$props7.enableOutsideDays,
+      numberOfMonths = _this$props7.numberOfMonths,
+      orientation = _this$props7.orientation,
+      monthFormat = _this$props7.monthFormat,
+      dayPickerNavigationInlineStyles = _this$props7.dayPickerNavigationInlineStyles,
+      navPosition = _this$props7.navPosition,
+      navPrev = _this$props7.navPrev,
+      navNext = _this$props7.navNext,
+      renderNavPrevButton = _this$props7.renderNavPrevButton,
+      renderNavNextButton = _this$props7.renderNavNextButton,
+      onPrevMonthClick = _this$props7.onPrevMonthClick,
+      onNextMonthClick = _this$props7.onNextMonthClick,
+      onClose = _this$props7.onClose,
+      withPortal = _this$props7.withPortal,
+      withFullScreenPortal = _this$props7.withFullScreenPortal,
+      keepOpenOnDateSelect = _this$props7.keepOpenOnDateSelect,
+      initialVisibleMonth = _this$props7.initialVisibleMonth,
+      renderMonthText = _this$props7.renderMonthText,
+      renderWeekHeaderElement = _this$props7.renderWeekHeaderElement,
+      renderCalendarDay = _this$props7.renderCalendarDay,
+      renderDayContents = _this$props7.renderDayContents,
+      renderCalendarInfo = _this$props7.renderCalendarInfo,
+      renderMonthElement = _this$props7.renderMonthElement,
+      calendarInfoPosition = _this$props7.calendarInfoPosition,
+      hideKeyboardShortcutsPanel = _this$props7.hideKeyboardShortcutsPanel,
+      firstDayOfWeek = _this$props7.firstDayOfWeek,
+      customCloseIcon = _this$props7.customCloseIcon,
+      phrases = _this$props7.phrases,
+      dayAriaLabelFormat = _this$props7.dayAriaLabelFormat,
+      daySize = _this$props7.daySize,
+      isRTL = _this$props7.isRTL,
+      isOutsideRange = _this$props7.isOutsideRange,
+      isDayBlocked = _this$props7.isDayBlocked,
+      isDayHighlighted = _this$props7.isDayHighlighted,
+      weekDayFormat = _this$props7.weekDayFormat,
+      css = _this$props7.css,
+      styles = _this$props7.styles,
+      verticalHeight = _this$props7.verticalHeight,
+      transitionDuration = _this$props7.transitionDuration,
+      verticalSpacing = _this$props7.verticalSpacing,
+      horizontalMonthPadding = _this$props7.horizontalMonthPadding,
+      small = _this$props7.small,
+      customRef = _this$props7.customRef,
+      reactDates = _this$props7.theme.reactDates;
     var _this$state = this.state,
       dayPickerContainerStyles = _this$state.dayPickerContainerStyles,
       isDayPickerFocused = _this$state.isDayPickerFocused,
@@ -453,41 +458,41 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
     /* eslint-enable jsx-a11y/click-events-have-key-events */
   };
   _proto.render = function render() {
-    var _this$props7 = this.props,
-      id = _this$props7.id,
-      placeholder = _this$props7.placeholder,
-      ariaLabel = _this$props7.ariaLabel,
-      autoComplete = _this$props7.autoComplete,
-      titleText = _this$props7.titleText,
-      disabled = _this$props7.disabled,
-      focused = _this$props7.focused,
-      required = _this$props7.required,
-      readOnly = _this$props7.readOnly,
-      openDirection = _this$props7.openDirection,
-      showClearDate = _this$props7.showClearDate,
-      showDefaultInputIcon = _this$props7.showDefaultInputIcon,
-      inputIconPosition = _this$props7.inputIconPosition,
-      customCloseIcon = _this$props7.customCloseIcon,
-      customInputIcon = _this$props7.customInputIcon,
-      date = _this$props7.date,
-      onDateChange = _this$props7.onDateChange,
-      displayFormat = _this$props7.displayFormat,
-      phrases = _this$props7.phrases,
-      withPortal = _this$props7.withPortal,
-      withFullScreenPortal = _this$props7.withFullScreenPortal,
-      screenReaderInputMessage = _this$props7.screenReaderInputMessage,
-      isRTL = _this$props7.isRTL,
-      noBorder = _this$props7.noBorder,
-      block = _this$props7.block,
-      small = _this$props7.small,
-      regular = _this$props7.regular,
-      verticalSpacing = _this$props7.verticalSpacing,
-      reopenPickerOnClearDate = _this$props7.reopenPickerOnClearDate,
-      keepOpenOnDateSelect = _this$props7.keepOpenOnDateSelect,
-      css = _this$props7.css,
-      styles = _this$props7.styles,
-      isOutsideRange = _this$props7.isOutsideRange,
-      isDayBlocked = _this$props7.isDayBlocked;
+    var _this$props8 = this.props,
+      id = _this$props8.id,
+      placeholder = _this$props8.placeholder,
+      ariaLabel = _this$props8.ariaLabel,
+      autoComplete = _this$props8.autoComplete,
+      titleText = _this$props8.titleText,
+      disabled = _this$props8.disabled,
+      focused = _this$props8.focused,
+      required = _this$props8.required,
+      readOnly = _this$props8.readOnly,
+      openDirection = _this$props8.openDirection,
+      showClearDate = _this$props8.showClearDate,
+      showDefaultInputIcon = _this$props8.showDefaultInputIcon,
+      inputIconPosition = _this$props8.inputIconPosition,
+      customCloseIcon = _this$props8.customCloseIcon,
+      customInputIcon = _this$props8.customInputIcon,
+      date = _this$props8.date,
+      onDateChange = _this$props8.onDateChange,
+      displayFormat = _this$props8.displayFormat,
+      phrases = _this$props8.phrases,
+      withPortal = _this$props8.withPortal,
+      withFullScreenPortal = _this$props8.withFullScreenPortal,
+      screenReaderInputMessage = _this$props8.screenReaderInputMessage,
+      isRTL = _this$props8.isRTL,
+      noBorder = _this$props8.noBorder,
+      block = _this$props8.block,
+      small = _this$props8.small,
+      regular = _this$props8.regular,
+      verticalSpacing = _this$props8.verticalSpacing,
+      reopenPickerOnClearDate = _this$props8.reopenPickerOnClearDate,
+      keepOpenOnDateSelect = _this$props8.keepOpenOnDateSelect,
+      css = _this$props8.css,
+      styles = _this$props8.styles,
+      isOutsideRange = _this$props8.isOutsideRange,
+      isDayBlocked = _this$props8.isDayBlocked;
     var isInputFocused = this.state.isInputFocused;
     var enableOutsideClick = !withPortal && !withFullScreenPortal;
     var hideFang = verticalSpacing < FANG_HEIGHT_PX;

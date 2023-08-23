@@ -179,12 +179,15 @@ class SingleDatePicker extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    const { focused } = this.props;
+    const { focused, openDirection } = this.props;
     if (!prevProps.focused && focused) {
       this.responsivizePickerPosition();
       this.disableScroll();
     } else if (prevProps.focused && !focused) {
       if (this.enableScroll) this.enableScroll();
+    } else if (prevProps.openDirection !== openDirection) {
+      // The direction of the date picker has changed
+      this.responsivizePickerPosition();
     }
   }
 
