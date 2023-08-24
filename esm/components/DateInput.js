@@ -226,7 +226,7 @@ var DateInput = /*#__PURE__*/function (_ref2, _ref) {
       role: "presentation",
       focusable: "false"
     }, css(styles.DateInput_fang, openDirection === OPEN_DOWN && {
-      top: inputHeight + verticalSpacing - FANG_HEIGHT_PX - 1
+      top: inputHeight + verticalSpacing - FANG_HEIGHT_PX
     }, openDirection === OPEN_UP && {
       bottom: inputHeight + verticalSpacing - FANG_HEIGHT_PX - 1
     })), /*#__PURE__*/React.createElement("path", _extends({}, css(styles.DateInput_fangShape), {
