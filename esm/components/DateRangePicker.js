@@ -519,7 +519,6 @@ var DateRangePicker = /*#__PURE__*/function (_ref2, _ref) {
       styles = _this$props8.styles;
     var isDateRangePickerInputFocused = this.state.isDateRangePickerInputFocused;
     var enableOutsideClick = !withPortal && !withFullScreenPortal;
-    var hideFang = verticalSpacing < FANG_HEIGHT_PX;
     var input = /*#__PURE__*/React.createElement(DateRangePickerInputController, {
       startDate: startDate,
       startDateId: startDateId,
@@ -535,7 +534,7 @@ var DateRangePicker = /*#__PURE__*/function (_ref2, _ref) {
       endDateTitleText: endDateTitleText,
       displayFormat: displayFormat,
       showClearDates: showClearDates,
-      showCaret: !withPortal && !withFullScreenPortal && !hideFang,
+      showCaret: !withPortal && !withFullScreenPortal,
       showDefaultInputIcon: showDefaultInputIcon,
       inputIconPosition: inputIconPosition,
       customInputIcon: customInputIcon,

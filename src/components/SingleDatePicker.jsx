@@ -592,8 +592,6 @@ class SingleDatePicker extends React.PureComponent {
 
     const enableOutsideClick = (!withPortal && !withFullScreenPortal);
 
-    const hideFang = verticalSpacing < FANG_HEIGHT_PX;
-
     const input = (
       <SingleDatePickerInputController
         id={id}
@@ -607,7 +605,7 @@ class SingleDatePicker extends React.PureComponent {
         required={required}
         readOnly={readOnly}
         openDirection={openDirection}
-        showCaret={!withPortal && !withFullScreenPortal && !hideFang}
+        showCaret={!withPortal && !withFullScreenPortal}
         showClearDate={showClearDate}
         showDefaultInputIcon={showDefaultInputIcon}
         inputIconPosition={inputIconPosition}

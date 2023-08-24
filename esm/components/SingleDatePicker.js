@@ -490,7 +490,6 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
       isDayBlocked = _this$props7.isDayBlocked;
     var isInputFocused = this.state.isInputFocused;
     var enableOutsideClick = !withPortal && !withFullScreenPortal;
-    var hideFang = verticalSpacing < FANG_HEIGHT_PX;
     var input = /*#__PURE__*/React.createElement(SingleDatePickerInputController, {
       id: id,
       placeholder: placeholder,
@@ -503,7 +502,7 @@ var SingleDatePicker = /*#__PURE__*/function (_ref2, _ref) {
       required: required,
       readOnly: readOnly,
       openDirection: openDirection,
-      showCaret: !withPortal && !withFullScreenPortal && !hideFang,
+      showCaret: !withPortal && !withFullScreenPortal,
       showClearDate: showClearDate,
       showDefaultInputIcon: showDefaultInputIcon,
       inputIconPosition: inputIconPosition,

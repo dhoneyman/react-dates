@@ -625,8 +625,6 @@ class DateRangePicker extends React.PureComponent {
 
     const enableOutsideClick = (!withPortal && !withFullScreenPortal);
 
-    const hideFang = verticalSpacing < FANG_HEIGHT_PX;
-
     const input = (
       <DateRangePickerInputController
         startDate={startDate}
@@ -643,7 +641,7 @@ class DateRangePicker extends React.PureComponent {
         endDateTitleText={endDateTitleText}
         displayFormat={displayFormat}
         showClearDates={showClearDates}
-        showCaret={!withPortal && !withFullScreenPortal && !hideFang}
+        showCaret={!withPortal && !withFullScreenPortal}
         showDefaultInputIcon={showDefaultInputIcon}
         inputIconPosition={inputIconPosition}
         customInputIcon={customInputIcon}
