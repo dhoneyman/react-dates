@@ -235,7 +235,6 @@ class DateInput extends React.PureComponent {
           onBlur={(evt) => {
             if (!dayPickerContainer) return;
             if (!dayPickerContainer?.contains(evt.relatedTarget)){
-              console.log('onKeyDownShiftTab called')
               onKeyDownShiftTab();
             }
           }}
