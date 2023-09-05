@@ -55,6 +55,7 @@ const propTypes = forbidExtraProps({
   reopenPickerOnClearDate: PropTypes.bool,
   isOutsideRange: PropTypes.func,
   displayFormat: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  dayPickerContainer: PropTypes.element,
 
   onClose: PropTypes.func,
   onKeyDownArrowDown: PropTypes.func,
@@ -97,6 +98,7 @@ const defaultProps = {
 
   keepOpenOnDateSelect: false,
   reopenPickerOnClearDate: false,
+  dayPickerContainer: null,
   isOutsideRange: (day) => !isInclusivelyAfterDay(day, moment()),
   displayFormat: () => moment.localeData().longDateFormat('L'),
 
@@ -168,7 +170,6 @@ export default class SingleDatePickerInputController extends React.PureComponent
       date,
     } = this.props;
     if (!focused) return;
-
     onFocusChange({ focused: false });
     onClose({ date });
   }
@@ -223,6 +224,7 @@ export default class SingleDatePickerInputController extends React.PureComponent
       small,
       regular,
       verticalSpacing,
+      dayPickerContainer
     } = this.props;
 
     const displayValue = this.getDateString(date);
@@ -259,6 +261,7 @@ export default class SingleDatePickerInputController extends React.PureComponent
         small={small}
         regular={regular}
         verticalSpacing={verticalSpacing}
+        dayPickerContainer={dayPickerContainer}
       >
         {children}
       </SingleDatePickerInput>

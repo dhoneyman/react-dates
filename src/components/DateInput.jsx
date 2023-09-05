@@ -48,6 +48,7 @@ const propTypes = forbidExtraProps({
 
   onKeyDownArrowDown: PropTypes.func,
   onKeyDownQuestionMark: PropTypes.func,
+  dayPickerContainer: PropTypes.element,
 
   // accessibility
   isFocused: PropTypes.bool, // describes actual DOM focus
@@ -68,6 +69,7 @@ const defaultProps = {
   small: false,
   block: false,
   regular: false,
+  dayPickerContainer: null,
 
   onChange() {},
   onFocus() {},
@@ -133,7 +135,8 @@ class DateInput extends React.PureComponent {
   }
 
   onKeyDown(e) {
-    e.stopPropagation();
+    const keyArray = ['Tab', 'ArrowDown', '?'];
+    if ( keyArray.includes( e.key )) e.stopPropogation();
     if (!MODIFIER_KEY_NAMES.has(e.key)) {
       this.throttledKeyDown(e);
     }
@@ -189,6 +192,8 @@ class DateInput extends React.PureComponent {
       regular,
       block,
       styles,
+      dayPickerContainer,
+      onKeyDownShiftTab,
       theme: { reactDates },
     } = this.props;
 
@@ -227,6 +232,13 @@ class DateInput extends React.PureComponent {
           ref={this.setInputRef}
           value={value}
           onChange={this.onChange}
+          onBlur={(evt) => {
+            if (!dayPickerContainer) return;
+            if (!dayPickerContainer?.contains(evt.relatedTarget)){
+              console.log('onKeyDownShiftTab called')
+              onKeyDownShiftTab();
+            }
+          }}
           onKeyDown={this.onKeyDown}
           onFocus={onFocus}
           placeholder={placeholder}
